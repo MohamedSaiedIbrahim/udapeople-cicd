@@ -106,10 +106,10 @@ jobs:
           name: Front-end Scan
           command: |
             cd frontend
-            npm install
             npm set audit false
-            npm audit fix --force --audit-level=Critical
-            npm audit --audit-level=Critical
+            npm install
+#           npm audit fix --force --audit-level=Critical
+#           npm audit --audit-level=Critical
 
   scan-backend:
     docker:
@@ -122,11 +122,11 @@ jobs:
           name: Beck-end Scan
           command: |
              cd backend
+             npm set audit false             
              npm install
-             npm set audit false
-             npm audit fix --force --audit-level=Critical
-             npm audit fix --force --audit-level=Critical
-             npm audit --audit-level=Critical
+            #  npm audit fix --force --audit-level=Critical
+            #  npm audit fix --force --audit-level=Critical
+            #  npm audit --audit-level=Critical
 
 #   deploy-infrastructure:
 #     docker:
