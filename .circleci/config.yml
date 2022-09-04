@@ -107,9 +107,9 @@ jobs:
           command: |
             cd frontend
             npm install
-            npm update kind-of --depth 11 
-            npm update js-yaml --depth 4
-            npm update ansi-regex --depth 7
+            npm update kind-of 
+            npm update js-yaml
+            npm update ansi-regex
             npm audit fix --force
             npm audit fix --force
             npm audit fix --force
@@ -128,6 +128,8 @@ jobs:
           command: |
              cd backend
              npm install
+             npm update path-parse
+             npm update kind-of
              npm audit fix --force
              npm audit fix --force
              npm audit fix --force
