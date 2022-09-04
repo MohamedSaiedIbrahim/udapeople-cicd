@@ -311,7 +311,7 @@ jobs:
 
   notify-on-sucess:
     docker:
-      - image: cimage/base:2021.04
+      - image: cimage/base
     steps:
       - slack/notify:
           event: pass
