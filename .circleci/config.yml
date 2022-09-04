@@ -107,13 +107,8 @@ jobs:
           command: |
             cd frontend
             npm install
-            npm update kind-of 
-            npm update js-yaml
-            npm update ansi-regex
-            npm audit fix --force
-            npm audit fix --force
-            npm audit fix --force
-            npm audit fix --force
+            npm set audit false
+            npm audit fix --force --audit-level=Critical
             npm audit --audit-level=Critical
 
   scan-backend:
@@ -128,13 +123,9 @@ jobs:
           command: |
              cd backend
              npm install
-             npm update path-parse
-             npm update kind-of
-             npm audit fix --force
-             npm audit fix --force
-             npm audit fix --force
-             npm audit fix --force
-             npm audit fix --force
+             npm set audit false
+             npm audit fix --force --audit-level=Critical
+             npm audit fix --force --audit-level=Critical
              npm audit --audit-level=Critical
 
 #   deploy-infrastructure:
