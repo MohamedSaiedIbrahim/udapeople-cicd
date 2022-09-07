@@ -6,7 +6,7 @@ orbs:
 commands:
   notify-on-failure:
     steps:
-      - slack/notify:ansible
+      - slack/notify:
           event: fail
           channel: circle-ci-channel
           template: basic-fail-1
