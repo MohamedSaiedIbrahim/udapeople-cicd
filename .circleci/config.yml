@@ -60,6 +60,7 @@ commands:
           when: on_fail
           command: |
             SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Workflow_ID >>)
+            echo "$SUCCESS"
             if(( $SUCCESS==1 )); 
             then
              cd ~/project/backend
@@ -230,6 +231,7 @@ jobs:
       - run:
           name: Run migrations
           command: |
+            export TYPEORM_HOST=$(aws ec2 describe-instances --region us-east-1 --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
             cd backend
             npm install
             npm run migrations > migration_dump.txt
