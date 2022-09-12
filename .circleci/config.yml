@@ -22,15 +22,15 @@ commands:
             sudo ./aws/install
 
   install_ansible:
-    description: Install Ansible
+    description: Install Ansible v2
     steps:
       - run:
-          name: Install Ansible
+          name: Install Ansible v2
           command: |
             sudo apt update
             sudo apt install software-properties-common
             sudo add-apt-repository --yes --update ppa:ansible/ansible
-            sudo apt install ansible -y
+            sudo apt install ansible
 
     install_nodejs:
       description: Install Node.js 13.8.0
@@ -285,7 +285,7 @@ jobs:
 
       - destroy-environment
       - revert-migrations
-                          
+
 #   deploy-backend:
 #     docker:
 #       # Docker image here that supports Ansible
@@ -399,8 +399,8 @@ workflows:
           requires: [deploy-infrastructure]
       - run-migrations:
           requires: [configure-infrastructure]
-      # - deploy-frontend:
-      #     requires: [run-migrations]
+      - deploy-frontend:
+          requires: [run-migrations]
       # - deploy-backend:
       #     requires: [run-migrations]
       # - smoke-test:
