@@ -309,10 +309,11 @@ jobs:
           name: Package Backend
           command: |
             cd backend
-            mkdir -p .circle/ansible/roles/deploy/files
             npm run build
             tar -czf artifact.tar.gz dist/* package*
             cd ..
+            
+            mkdir -p .circle/ansible/roles/deploy/files
             cp backend/artifact.tar.gz .circle/ansible/roles/deploy/files
       - run:
           name: Deploy backend
