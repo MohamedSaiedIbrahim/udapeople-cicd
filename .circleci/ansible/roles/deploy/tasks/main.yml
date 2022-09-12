@@ -1,7 +1,7 @@
 ---
 - name: "Creates backend app directory"
   file:
-    path: ~/backend
+    path: /home/ubuntu/backend
     state: directory
 
 - copy:
