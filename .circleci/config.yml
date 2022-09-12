@@ -293,7 +293,7 @@ jobs:
       - checkout
       - install_awscli
       - install_ansible
-      - install-nodejs
+      - install_nodejs
       - add_ssh_keys:
           fingerprints: ["dd:ed:8d:21:02:6c:e7:3d:86:5d:08:ae:e8:1c:b1:c7"]
       - attach_workspace:
