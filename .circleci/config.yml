@@ -336,19 +336,15 @@ jobs:
       - install_awscli
       - install_nodejs
       - run:
-          name: Istall dependenciesn
-          command: |
-            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances --region us-east-1 --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
-
-      - run:
           name: Get backend url
           command: |
+            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances --region us-east-1 --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
             export API_URL=http://${BACKEND_PUBLIC_IP}:3030
             
       - run:
           name: Backend smoke test.
           command: |
-            echo $API_URL/api/status
+            echo ${API_URL}/api/status
             if curl -s $API_URL/api/status | grep "ok"
             then
               exit 0
