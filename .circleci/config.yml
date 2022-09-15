@@ -360,7 +360,7 @@ jobs:
             FRONTEND_WEBSITE=http://udapeaople-${CIRCLE_WORKFLOW_ID:0:7}.s3-website.${AWS_DEFAULT_REGION}.amazonaws.com
             if curl -s $FRONTEND_WEBSITE | grep "Welcome"
             then
-              exit 3
+              exit 0
             else
               exit 1
             fi
