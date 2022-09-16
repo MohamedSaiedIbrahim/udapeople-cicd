@@ -205,7 +205,7 @@ jobs:
       - run:
           name: Add back-end ip to ansible inventory
           command: |
-            echo $(aws ec2 describe-instances --region us-east-1 --query 'Reservations[*].Instances[*].PublicIpAddress' --output text) >> .circleci/ansible/inventory.txt
+            echo $(aws ec2 describe-instances --region us-east-1 --filters "Name=tag:aws:cloudformation:stack-name,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" --query 'Reservations[*].Instances[*].PublicIpAddress' --output text) >> .circleci/ansible/inventory.txt
             cat .circleci/ansible/inventory.txt
       - persist_to_workspace:
           root: ~/
@@ -273,7 +273,7 @@ jobs:
       - run:
           name: Get backend url
           command: |
-            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances --region us-east-1 --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances --region us-east-1 --filters "Name=tag:aws:cloudformation:stack-name,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
             echo "API_URL=http://${BACKEND_PUBLIC_IP}:3030" >> frontend/.env
             cat frontend/.env
       - run:
@@ -338,14 +338,14 @@ jobs:
       - run:
           name: Get backend url
           command: |
-            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances --region us-east-1 --filters "Name=tag:Name,Values=Udapeople" --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances --region us-east-1 --filters "Name=tag:aws:cloudformation:stack-name,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
             export API_URL=http://${BACKEND_PUBLIC_IP}:3030
             echo ${API_URL}/api/status
             
       - run:
           name: Backend smoke test.
           command: |
-            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances --region us-east-1 --filters "Name=tag:Name,Values=Udapeople" --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
+            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances --region us-east-1 --filters "Name=tag:aws:cloudformation:stack-name,Values=udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
             export API_URL=http://${BACKEND_PUBLIC_IP}:3030
             echo ${API_URL}/api/status
             if curl -s $API_URL/api/status | grep "ok"
