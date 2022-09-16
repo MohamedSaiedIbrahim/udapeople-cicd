@@ -411,10 +411,6 @@ jobs:
               export OldWorkflowID=$(curl --insecure https://kvdb.io/${KVDB_BUCKET}/old_workflow_id)
               echo Old Workflow ID: $OldWorkflowID
 
-        - run:
-            name: Remove old stacks and files
-            command: |
-              echo ${OldWorkflowID} 
               if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
               then
                 aws cloudformation delete-stack --stack-name udapeople-backend-${OldWorkflowID}
