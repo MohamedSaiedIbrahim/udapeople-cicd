@@ -33,11 +33,17 @@ Resources:
       SecurityGroups:
         - Ref: InstanceSecurityGroup
       KeyName: udacity # If you use another key pair name, you should change this value to match.
-
       ImageId: ami-08d4ac5b634553e16
       Tags:
         - Key: Name
           Value: !Sub backend-${ID}
         - Key: Name
           Value: Udapeople
+
+  InstanceEIP:
+    Type: AWS::EC2::EIP 
+    Properties:
+      Default: vpc
+      InstanceId: !Ref EC2Instance
+     
 
