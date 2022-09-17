@@ -405,7 +405,7 @@ jobs:
             command: |
               export STACKS=($(aws cloudformation list-stacks \
               --query "StackSummeries[*].StackName" \
-              --stack-status-filter CREATED_COMPLTE --no-paginate --output text))
+              --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
               echo Stack names:"${STACKS[@]}"
 
               export OldWorkflowID=$(curl --insecure https://kvdb.io/${KVDB_BUCKET}/old_workflow_id)
