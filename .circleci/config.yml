@@ -443,7 +443,7 @@ workflows:
           requires: [build-frontend]
       - notify-on-sucess:
           requires:
-            - test-frontendmigration
+            - test-frontend
             - test-backend
             - scan-backend
             - scan-frontend
