@@ -10,13 +10,13 @@
     curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
     sudo apt-get install -y nodejs
 
-- name: "install dependencies."
-  become: true
-  apt:
-    # name: ["nodejs", "npm"]
-    name: ["npm"]
-    state: latest
-    update_cache: yes
+# - name: "install dependencies."
+#   become: true
+#   apt:
+#     # name: ["nodejs", "npm"]
+#     name: ["npm"]
+#     state: latest
+#     update_cache: yes
 
 - name: "Install PM2 Globally"
   become: true
