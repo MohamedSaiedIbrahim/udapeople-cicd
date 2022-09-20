@@ -1,13 +1,20 @@
 ---
+- name: "upgrade packages."
+  become: true
+  apt:
+    upgrade: "yes"
+
 - name: "Add Node.js from Nodesource"
   become: true
   shell: |
     curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+    sudo apt-get install -y nodejs
 
 - name: "install dependencies."
   become: true
   apt:
-    name: ["nodejs", "npm"]
+    # name: ["nodejs", "npm"]
+    name: ["npm"]
     state: latest
     update_cache: yes
 
